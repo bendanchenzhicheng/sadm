@@ -8,7 +8,12 @@
 </head>
 <body>
 
-<%= yield %>
+  <div class="apidoc">
+    <div class="inner">
+      <%= render "shared/sidebar" %>
+      <%= yield %>
+    </div>
+  </div>
 
 </body>
 </html>
