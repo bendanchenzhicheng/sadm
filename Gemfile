@@ -13,6 +13,7 @@ group :assets do
   gem 'therubyracer'
 end
 
+gem 'devise'
 gem 'ancestry'
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 
