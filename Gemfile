@@ -3,32 +3,28 @@ source 'http://ruby.taobao.org'
 
 gem 'rails', '4.0.2' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'sqlite3'        # Use sqlite3 as the database for Active Record
+gem 'turbolinks'
+gem 'jquery-rails'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
-
 group :assets do
   gem 'uglifier', '>= 1.3.0'
   gem 'therubyracer'
 end
 
-gem 'jquery-rails'
 gem 'ancestry'
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+# Text
+gem 'minidown' # https://github.com/jjyr/minidown
 
 group :production do
   gem 'unicorn' # Use unicorn as the app server
 end
 
 group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+  gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
 
 group :development, :test do
@@ -48,3 +44,10 @@ group :test do
   gem 'rspec-rails'          # https://www.relishapp.com/rspec/rspec-rails/docs
   gem 'database_cleaner'
 end
+
+# Use ActiveModel has_secure_password
+# gem 'bcrypt-ruby', '~> 3.1.2'
+
+# Exception Mail
+# gem 'exception_notification'
+
