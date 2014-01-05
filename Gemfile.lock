@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/rails-api/active_model_serializers.git
+  revision: 9bb32331f41442dba1a7059890308b5fb9af113a
+  specs:
+    active_model_serializers (0.9.0.pre)
+      activemodel (>= 3.2)
+
 GEM
   remote: http://ruby.taobao.org/
   specs:
@@ -154,6 +161,8 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    turbolinks (2.1.0)
+      coffee-rails
     tzinfo (0.3.38)
     uglifier (2.4.0)
       execjs (>= 0.3.0)
@@ -167,6 +176,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers!
   ancestry
   capistrano
   coffee-rails (~> 4.0.0)
@@ -184,5 +194,6 @@ DEPENDENCIES
   sqlite3
   therubyracer
   thin
+  turbolinks
   uglifier (>= 1.3.0)
   unicorn

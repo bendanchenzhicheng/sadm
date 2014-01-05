@@ -14,19 +14,16 @@ end
 
 gem 'jquery-rails'
 gem 'ancestry'
+gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-# gem 'turbolinks'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem 'jbuilder', '~> 1.2'
+gem 'turbolinks'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
-# Use unicorn as the app server
 group :production do
-  gem 'unicorn'
+  gem 'unicorn' # Use unicorn as the app server
 end
 
 group :doc do
@@ -41,8 +38,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'capistrano'
   gem 'thin'
+  gem 'capistrano', require: false
 end
 
 group :test do
