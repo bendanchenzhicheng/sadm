@@ -47,7 +47,7 @@ end
 
 group :test do
   gem 'factory_girl_rails'   # https://github.com/thoughtbot/factory_girl/blob/master/GETTING_STARTED.md
+  gem 'ffaker'
   gem 'rspec-rails'          # https://www.relishapp.com/rspec/rspec-rails/docs
   gem 'database_cleaner'
-  gem 'ffaker'
 end
