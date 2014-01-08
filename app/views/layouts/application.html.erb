@@ -1,19 +1,27 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Apidoc</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <div class="apidoc">
-    <div class="inner">
-      <%= render "shared/sidebar" %>
-      <%= yield %>
+    <title><%= content_for?(:title) ? yield(:title) : "API Doc" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <div class="apidoc">
+      <div class="row inner">
+        <div class="large-3 columns apidoc-sidebar">
+          <%= render "shared/sidebar" %>
+        </div>
+        <div class="large-9 columns apidoc-container">
+          <%= yield %>
+        </div>
+      </div>
     </div>
-  </div>
-
-</body>
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>

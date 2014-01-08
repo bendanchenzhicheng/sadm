@@ -1,0 +1,18 @@
+/*引入基本的框架之类的*/
+@import "foundation_and_overrides";
+@import "variables";
+@import "mixins";
+
+.apidoc {
+  margin-top: 40px;
+}
+
+.apidoc > .inner > .apidoc-sidebar {
+  background: #F9F9F9;
+  min-height: 768px;
+  padding: 20px;
+}
+
+.apidoc > .inner > .apidoc-container {
+  padding: 20px;
+}
