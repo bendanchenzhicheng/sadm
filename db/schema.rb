@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140105103714) do
+ActiveRecord::Schema.define(version: 20140108142059) do
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.string   "ancestry"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories", ["ancestry"], name: "index_categories_on_ancestry"
+
+  create_table "documents", force: true do |t|
+    t.text     "content"
+    t.text     "rendered_content"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

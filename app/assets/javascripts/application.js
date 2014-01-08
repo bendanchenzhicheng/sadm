@@ -16,4 +16,9 @@
 
 //= require foundation
 
-$(function(){ $(document).foundation(); });
+$(function(){
+  $(document).foundation();
+
+  document.addEventListener("page:fetch", function(){ console.log("page:fetgch") });
+  document.addEventListener("page:receive", function(){ console.log("page:receive") });
+});
