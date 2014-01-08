@@ -13,6 +13,8 @@
 
   <body>
     <div class="apidoc">
+      <%= render "shared/top_navbar" %>
+
       <div class="row inner">
         <div class="large-3 columns apidoc-sidebar">
           <%= render "shared/sidebar" %>
@@ -21,7 +23,10 @@
           <%= yield %>
         </div>
       </div>
+
     </div>
+
     <%= javascript_include_tag "application" %>
+
   </body>
 </html>

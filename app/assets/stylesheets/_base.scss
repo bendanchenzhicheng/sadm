@@ -3,7 +3,7 @@
 @import "variables";
 @import "mixins";
 
-.apidoc {
+.apidoc > .inner {
   margin-top: 40px;
 }
 
@@ -15,4 +15,9 @@
 
 .apidoc > .inner > .apidoc-container {
   padding: 20px;
+}
+
+.apidoc-top-bar .session-button {
+  padding: 0 15px;
+  height: 45px;
 }

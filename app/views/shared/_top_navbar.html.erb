@@ -1,0 +1,22 @@
+<nav class="top-bar apidoc-top-bar">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/documents">API Doc</a></h1>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li class="divider"></li>
+      <li class="session-button">
+        <% if user_signed_in? %>
+          <%= link_to "登 出", destroy_user_session_path, method: :delete, class: "small button" %>
+        <% else %>
+          <%= link_to "登 录", new_user_session_path, class: "small button"  %> 
+        <% end %>
+      </li>
+      <li class="divider"></li>
+    </ul>
+  </section>
+</nav>
