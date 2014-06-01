@@ -12,13 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-
+//= require vendor/modernizr
 //= require foundation
 
-$(function(){
-  $(document).foundation();
-
-  document.addEventListener("page:fetch", function(){ console.log("page:fetgch") });
-  document.addEventListener("page:receive", function(){ console.log("page:receive") });
-});
+$(document).foundation();

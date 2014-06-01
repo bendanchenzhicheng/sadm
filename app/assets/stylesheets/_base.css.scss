@@ -3,8 +3,18 @@
 @import "variables";
 @import "mixins";
 
+body {
+  background-color: #eff5f2;
+}
+
+.apidoc > .apidoc-top-bar > .apidoc-top-bar-inner {
+  width: 1024px;
+  margin: 0 auto;
+}
+
 .apidoc > .inner {
-  margin-top: 40px;
+  width: 1024px;
+  margin: 0 auto;
 }
 
 .apidoc > .inner > .apidoc-sidebar {
