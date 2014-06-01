@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140108142059) do
   create_table "categories", force: true do |t|
     t.string   "name"
     t.string   "ancestry"
-    t.integer  "position"
+    t.integer  "position",   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

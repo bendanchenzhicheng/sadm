@@ -4,10 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "API Doc" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "文档管理" %></title>
 
-    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= stylesheet_link_tag "application", media: "all" %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -15,7 +14,7 @@
     <div class="apidoc">
       <%= render "shared/top_navbar" %>
 
-      <div class="row inner">
+      <div class="inner row">
         <div class="large-3 columns apidoc-sidebar">
           <%= render "shared/sidebar" %>
         </div>
@@ -26,7 +25,7 @@
 
     </div>
 
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application" %>
 
   </body>
 </html>

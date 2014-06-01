@@ -18,8 +18,8 @@ body {
 }
 
 .apidoc > .inner > .apidoc-sidebar {
-  background: #F9F9F9;
-  min-height: 768px;
+  @include common-card;
+  min-height: 600GGpx;
   padding: 20px;
 }
 
