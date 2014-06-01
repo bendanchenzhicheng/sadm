@@ -6,22 +6,18 @@ gem 'sqlite3'        # Use sqlite3 as the database for Active Record
 gem 'turbolinks'
 gem 'jquery-rails'
 gem 'rails-i18n', '~> 4.0.0'
+gem 'jbuilder', '~> 1.2'
 
 gem 'sass-rails', '~> 4.0.0'
+gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'compass-rails'
-
-group :assets do
-  gem 'uglifier', '>= 1.3.0'
-  gem 'therubyracer'
-end
 
 gem 'devise'
 gem 'ancestry'
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 
 # Frontend
-gem 'foundation-rails'
+gem 'foundation-rails', '~> 5.2.3.0'
 
 # Text
 gem 'minidown' # https://github.com/jjyr/minidown
