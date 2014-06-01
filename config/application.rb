@@ -22,12 +22,9 @@ module Apidoc
     config.i18n.default_locale = :zh_CN
 
     config.generators do |g|
-      g.test_framework  :rspec, fixture: false
+      g.test_framework :test_unit, fixture: false
       g.stylesheets false
       g.javascripts false
-      g.helper false
-      g.helper_specs false
-      g.view_specs false
     end
 
   end
