@@ -7,27 +7,32 @@ body {
   background-color: #eff5f2;
 }
 
-.apidoc > .apidoc-top-bar > .apidoc-top-bar-inner {
+.app-container > .app-topbar > .app-topbar-inner {
   width: 1024px;
   margin: 0 auto;
+  padding: 0;
 }
 
-.apidoc > .inner {
-  width: 1024px;
-  margin: 0 auto;
+.app-container > .app-main-wrapper {
+  margin-top: 30px;
 }
 
-.apidoc > .inner > .apidoc-sidebar {
+.app-main-wrapper > .main-container-inner {
   @include common-card;
-  min-height: 600px;
+  width: 1024px;
+  margin: 0 auto;
   padding: 20px;
+  min-height: 550px;
 }
 
-.apidoc > .inner > .apidoc-container {
-  padding: 20px;
-}
-
-.apidoc-top-bar .session-button {
+.app-topbar .session-button {
   padding: 0 15px;
   height: 45px;
+}
+
+.session-wrapper {
+  @include common-card;
+  width: 700px;
+  margin: 0 auto;
+  padding: 50px;
 }
