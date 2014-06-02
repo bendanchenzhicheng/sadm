@@ -1,10 +1,6 @@
 class CategorySerializer < ActiveModel::Serializer
 
-  attributes :id, :pid, :name, :ancestry, :position, :isParent
-
-  def pid
-    object.id
-  end
+  attributes :id, :name, :ancestry, :position, :isParent
 
   def isParent
     object.has_children?

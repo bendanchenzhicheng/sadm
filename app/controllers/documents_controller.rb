@@ -1,6 +1,6 @@
 class DocumentsController < AdminController
 
-  # GET /documents
+  # GET /documents?category_id=
   def index
   end
 

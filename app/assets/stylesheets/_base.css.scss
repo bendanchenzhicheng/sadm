@@ -26,6 +26,10 @@ body {
   min-height: 550px;
 }
 
+.app-main-wrapper > .main-container-inner .row .sidebar-wrapper {
+  position: relative;
+}
+
 .app-topbar .session-button {
   padding: 0 15px;
   height: 45px;

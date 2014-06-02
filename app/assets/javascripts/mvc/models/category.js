@@ -1,6 +1,11 @@
 var App = window.App || {};
 
-var App.Models.Category = Backbone.Model.extend({
+App.Models.Category = Backbone.Model.extend({
+  urlRoot: '/categories',
+
+  defaults: {
+    name: 'new category'
+  },
 
   initialize: function() {
   }
