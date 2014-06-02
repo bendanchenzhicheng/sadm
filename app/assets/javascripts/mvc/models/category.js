@@ -1,6 +1,6 @@
-var Sdm = window.Sdm || {};
+var App = window.App || {};
 
-var Sdm.Models.Category = Backbone.Model.extend({
+var App.Models.Category = Backbone.Model.extend({
 
   initialize: function() {
   }
