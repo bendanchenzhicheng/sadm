@@ -12,9 +12,22 @@
 //
 //= require jquery
 //= require jquery_ujs
+
+//= require ztree/jquery.ztree.core-3.5.js
+//= require ztree/jquery.ztree.exedit-3.5.js
+//= require ztree/jquery.ztree.exhide-3.5.js
+
 //= require underscore-min
 //= require backbone
+
 //= require vendor/modernizr
 //= require foundation
 
+// Start Backbone histroy a necessary step for bookmarkable URL'S
+Backbone.history.start();
+
+// Foundation initializer
 $(document).foundation();
+
+$(function(){
+})
