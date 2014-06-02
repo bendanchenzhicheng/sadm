@@ -27,7 +27,7 @@ body {
 }
 
 .app-main-wrapper > .main-container-inner .row .sidebar-wrapper {
-  // position: relative;
+  overflow-x: scroll;
 }
 
 .app-topbar .session-button {

@@ -75,7 +75,7 @@ $(function(){
     }
   }
   var onUpdateNode = function(e, treeId, treeNode, isCancel) {
-    var category = new App.Models.Category({id: treeNode.id, ancestor: treeNode.ancestor});
+    var category = new App.Models.Category({id: treeNode.id, ancestry: treeNode.ancestry});
     category.save({name: treeNode.name}, {
       success: function(model, resp) { console.log('更新结点成功！'); },
       error: function(model, resp) { console.log('更新结点失败！'); console.dir(resp); }

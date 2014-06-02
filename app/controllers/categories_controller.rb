@@ -25,8 +25,17 @@ class CategoriesController < AdminController
 
   # POST /categories
   def create
-    @category = Category.new category_params
-    if @category.save
+    parent_id = category_params[:ancestry]
+    parent = Category.where(id: parent_id).first
+
+    if parent_id
+      render_error '父结点不存在，请刷新！' && return if !parent.present?
+      @category = parent.children.create category_params.except(:ancestry)
+    else
+      @category = Category.create category_params
+    end
+
+    if @category.errors.empty?
       render json: @category
     else
       render_error @category.errors.full_messages.join('\n')
