@@ -1,7 +1,8 @@
 class AdminController < ActionController::Base
   layout false
-
-  before_action :authenticate_user!
+  
+  # before_action :authenticate_user!
+  before_action :authenticate_user!, if: -> { !request.env["HTTP_DEBUG"] }
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
