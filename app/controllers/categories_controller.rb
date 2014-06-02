@@ -1,4 +1,4 @@
-class CategoriesController < ApplicationController
+class CategoriesController < AdminController
   before_action :force_json_format
 
   # GET /categories

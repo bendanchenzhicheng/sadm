@@ -1,4 +1,4 @@
-class DocumentsController < ApplicationController
+class DocumentsController < AdminController
 
   # GET /documents
   def index
