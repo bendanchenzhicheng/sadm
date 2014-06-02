@@ -3,7 +3,18 @@ class CategoriesController < AdminController
 
   # GET /categories
   def index
-    @categories = Category.roots.order(position: :asc)
+    parent_id = params[:parent_id] || params[:id] || nil
+
+    if parent_id && parent_id.to_i > 0
+      root = Category.where(id: parent_id.to_i).first
+      if root
+        @categories = root.children.order(position: :asc)
+      else
+        @categories = []
+      end
+    else
+      @categories = Category.roots.order(position: :asc)
+    end
 
     render json: @categories
   end

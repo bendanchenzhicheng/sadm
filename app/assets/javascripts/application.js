@@ -15,7 +15,6 @@
 
 //= require ztree/jquery.ztree.core-3.5.js
 //= require ztree/jquery.ztree.exedit-3.5.js
-//= require ztree/jquery.ztree.exhide-3.5.js
 
 //= require underscore-min
 //= require backbone
@@ -30,4 +29,30 @@ Backbone.history.start();
 $(document).foundation();
 
 $(function(){
-})
+
+  // 初始化目录树
+  var $categoryTree = $("#sidebar-categiries-tree");
+  var categoriesDataFilter = function(treeId, parentNode, respData) {
+    return respData["categories"];
+  };
+  var zTreeSetting = {
+    view: {
+      dblClickExpand: true,
+      showLine: true,
+      selectedMulti: false
+    },
+    async: {
+      enable: true,
+      url: '/categories',
+      type: 'get',
+      dataType: 'JSON',
+      autoParam: ['id=parent_id'],
+      otherParams: { 'request_agent': 'jquery.zTree' },
+      dataFilter: categoriesDataFilter
+    }
+  };
+
+  if ($categoryTree.length > 0) {
+    $.fn.zTree.init($categoryTree, zTreeSetting);
+  }
+});
