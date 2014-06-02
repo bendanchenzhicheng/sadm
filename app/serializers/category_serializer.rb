@@ -1,3 +1,3 @@
 class CategorySerializer < ActiveModel::Serializer
-  attributes :id, :name, :ancastry, :position
+  attributes :id, :name, :ancestry, :position
 end

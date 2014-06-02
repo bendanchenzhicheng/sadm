@@ -3,9 +3,9 @@ class CategoriesController < AdminController
 
   # GET /categories
   def index
-    @categories = Category.arrange_serializable(order: :position)
+    @categories = Category.roots.order(position: :asc)
 
-    render json: { categories: @categories.to_json }
+    render json: @categories
   end
 
   # GET /categories/:id

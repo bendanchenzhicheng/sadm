@@ -8,6 +8,6 @@
 window.App = {
   Models: {},
   Collections: {},
-  Routers: {},
-  Views: {}
+  Views: {},
+  Routers: {}
 };
