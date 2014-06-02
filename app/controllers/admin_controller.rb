@@ -14,12 +14,8 @@ class AdminController < ActionController::Base
     request.format = 'json'
   end
 
-  def render_success_or_fail error=nil, extra={}
-    if error.nil? || error.blank?
-      render json: extra
-    else
-      render json: { error: error }, status: :bad_request
-    end
+  def render_error error
+    render json: { error: error }, status: :bad_request
   end
 
 end

@@ -27,7 +27,7 @@ body {
 }
 
 .app-main-wrapper > .main-container-inner .row .sidebar-wrapper {
-  position: relative;
+  // position: relative;
 }
 
 .app-topbar .session-button {
@@ -40,4 +40,12 @@ body {
   width: 700px;
   margin: 0 auto;
   padding: 50px;
+}
+
+.ztree li span.button.add {
+  margin-left: 2px;
+  margin-right: -1px;
+  background-position: -144px 0;
+  vertical-align: top;
+  *vertical-align: middle;
 }

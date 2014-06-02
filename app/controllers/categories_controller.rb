@@ -29,12 +29,19 @@ class CategoriesController < AdminController
     if @category.save
       render json: @category
     else
-      render json: { error: @category.errors }, status: :bad_request
+      render_error @category.errors.full_messages.join('\n')
     end
   end
 
   # PATCH /categories/:id
   def update
+    @category = Category.where(id: params[:id]).first
+
+    if @category.update category_params
+      render json: @category
+    else
+      render_error @category.errors.full_messages.join('\n')
+    end
   end
 
   # DELETE /categories/:id
@@ -42,15 +49,15 @@ class CategoriesController < AdminController
     @category = Category.where(id: params[:id]).first
 
     if @category.nil?
-      render_success_or_fail '结点不存在，请刷新页面或刷新目录树！' && return
+      render_error '结点不存在，请刷新页面或刷新目录树！' && return
     end
 
     if @category.has_children?
-      render_success_or_fail '此目录有子目录，不能删除！'
+      render_error '此目录有子目录，不能删除！'
     elsif @category.destroy
-      render_success_or_fail
+      render json: { success: true }
     else
-      render_success_or_fail @category.errors.full_messages.join('\n')
+      render_error @category.errors.full_messages.join('\n')
     end
   end
 

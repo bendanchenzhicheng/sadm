@@ -33,94 +33,70 @@ $(document).foundation();
 $(function(){
 
   // 初始化目录树
-  var zTree, rightMenu;
+  var zTree;
   var $categoryTree = $("#sidebar-categiries-tree");
   var categoriesDataFilter = function(treeId, parentNode, respData) {
     return respData["categories"];
   }
-  var onBodyMouseDown = function(e) {
-    if (!(e.target.id == 'tree-right-menu' || $(e.target).parents('#tree-right-menu').length > 0)) {
-      rightMenu.css({visibility: 'hidden'});
-      return true;
-    }
-  }
-  var showRightMenu = function(event, treeId, treeNode) {
-    if (!treeNode) {
-      zTree.cancelSelectedNode();
-    } else {
-      zTree.selectNode(treeNode);
+  var addHoverDom = function(treeId, treeNode) {
+    if ($('#addBtn_' + treeNode.tId).length > 0) { return; }
 
-      var rootPos = $("#sidebar-categiries-tree").offset();
-      var pos = $(event.target).offset();
-      var top  = pos.top - rootPos.top;
-      var left = pos.left - rootPos.left;
+    var sObj = $("#" + treeNode.tId + "_span");
+    sObj.after("<span class='button add' id='addBtn_" + treeNode.tId + "' title='add node' onfocus='this.blur();'></span>");
 
-      rightMenu.css({top: top + 'px', left: left + 'px', visibility: 'visible'});
-    }
+    var $addBtn = $("#addBtn_" + treeNode.tId);
 
-    $('body').bind('mousedown', onBodyMouseDown);
-  }
-  var hideRightMenu = function() {
-    if (rightMenu) { rightMenu.css({visibility: 'hidden'}); }
-    $('body').unbind('mousedown', onBodyMouseDown);
-  }
-  var addTreeNode = function() {
-    hideRightMenu();
+    $addBtn.bind('click', function(e){
+      var category = new App.Models.Category();
 
-    var category = new App.Models.Category();
-    var selectedNode = zTree.getSelectedNodes()[0];
-
-    if (selectedNode) {
-      category.save({ancestry: selectedNode.id}, {
-        success: function(model, resp, options) {
-          zTree.addNodes(selectedNode, model.toJSON());
-        }
-      });
-    } else {
-      category.save({}, {
-        success: function(model, resp, options) {
-          zTree.addNodes(null, model.toJSON());
-        }
-      });
-    }
-  }
-  var delTreeNode = function() {
-    hideRightMenu();
-
-    var selectedNode = zTree.getSelectedNodes()[0];
-
-    if (!selectedNode) {
-      console.error('没有选中结点！');
-      return false;
-    }
-
-    if (selectedNode.isParent) {
-      alert('有子目录，不能删除！');
-      return false;
-    }
-
-    if (confirm('确定要删除?') == true) {
-      var category = new App.Models.Category({
-        id: selectedNode.id,
-        name: selectedNode.name
+      category.save({ancestry: treeNode.id}, {
+        success: function(model, resp, options) { zTree.addNodes(treeNode, model.toJSON()); },
+        error: function(model, resp, options) { alert('添加子目录失败！'); console.dir(resp); }
       });
 
+    });
+  }
+  var removeHoverDom = function(treeId, treeNode) {
+    $("#addBtn_" + treeNode.tId).unbind().remove();
+  }
+  var showRemoveBtn = function(treeId, treeNode) { return !treeNode.isParent; };
+  var beforeEditNode = function(treeId, treeNode) { zTree.selectNode(treeNode); return true; }
+  var beforeRemoveNode = function(treeId, treeNode){
+    if (treeNode.isParent) { alert('有子目录，不能删除！'); return false; }
+    if (confirm('确定要删除【' + treeNode.name + '】吗？') == true) {
+      var category = new App.Models.Category({id: treeNode.id, name: treeNode.name});
       category.destroy({
-        success: function(model, resp) {
-          zTree.removeNode(selectedNode);
-        },
-        error: function(model, resp) {
-          alert('删除结点失败');
-          console.dir(resp);
-        }
+        wait: true,
+        success: function(model, resp) { return true; },
+        error: function(model, resp) { alert('删除结点失败'); console.dir(resp); return false; }
       });
+    } else {
+      return false;
     }
+  }
+  var onUpdateNode = function(e, treeId, treeNode, isCancel) {
+    var category = new App.Models.Category({id: treeNode.id, ancestor: treeNode.ancestor});
+    category.save({name: treeNode.name}, {
+      success: function(model, resp) { console.log('更新结点成功！'); },
+      error: function(model, resp) { console.log('更新结点失败！'); console.dir(resp); }
+    });
   }
   var zTreeSetting = {
     view: {
       dblClickExpand: true,
       showLine: true,
-      selectedMulti: false
+      selectedMulti: false,
+      addHoverDom: addHoverDom,
+      removeHoverDom: removeHoverDom
+    },
+    edit: {
+      enable: true,
+      showRemoveBtn: showRemoveBtn
+    },
+    data: {
+      simpleData: {
+        enable: true
+      }
     },
     async: {
       enable: true,
@@ -131,17 +107,14 @@ $(function(){
       dataFilter: categoriesDataFilter
     },
     callback: {
-      onRightClick: showRightMenu
+      beforeEditName: beforeEditNode,
+      beforeRemove: beforeRemoveNode,  // 直接提交到后台服务器
+      onRename: onUpdateNode           // 提交到后台服务器
     }
   };
 
   if ($categoryTree.length > 0) {
     $.fn.zTree.init($categoryTree, zTreeSetting);
-
     zTree = $.fn.zTree.getZTreeObj("sidebar-categiries-tree");
-    rightMenu = $("#tree-right-menu");
-
-    $("#tree-add-node").on('click', function(e){ addTreeNode(); });
-    $("#tree-del-node").on('click', function(e){ delTreeNode(); });
   }
 });
